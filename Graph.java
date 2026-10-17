@@ -1,33 +1,48 @@
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 class Graph {
-    private HashSet<Vertex> nodes;
-    
+    private List<Vertex> nodes;
+    private int[][] adjMatrix;
+    private final int MAX_VERTICES = 10;
+
     public Graph() {
-        nodes = new HashSet<>();
+        nodes = new ArrayList<>();
+        adjMatrix = new int[MAX_VERTICES][MAX_VERTICES];
     }
-    
-    public boolean AddEdge(Vertex v1, Vertex v2, int weight) { // поскольку это направленный граф
-        return v1.getEdges().add(new Edge(v2, weight));
-    }
-    /* Если вы хотите реализовать неориентированный граф,
-    * добавьте v2.getEdges().add(new Edge (v1, weight)) Takжe
-    */
-    
+
     public boolean AddVertex(Vertex v) {
-        return nodes.add(v);
+        if (!nodes.contains(v)) {
+            nodes.add(v);
+            return true;
+        }
+        return false;
     }
-    
+
+    public boolean AddEdge(Vertex v1, Vertex v2, int weight) {
+        int index1 = nodes.indexOf(v1);
+        int index2 = nodes.indexOf(v2);
+
+        if (index1 != -1 && index2 != -1) {
+            adjMatrix[index1][index2] = weight;
+            return true;
+        }
+        return false;
+    }
+
     public void printGraph() {
-        for (Vertex v : nodes) { 
-            System.out.print("vertex name: " + v.getName() + ": "); 
-            
-            // Fixed: Added the missing colon (:)
-            for (Edge e : v.getEdges()) {
-                System.out.print("destVertex: " + e.getDestVertex().getName() + " weight: " + e.getWeight() + " | ");
+        // Шапка таблицы с именами вершин
+        System.out.print("   ");
+        for (Vertex v : nodes) {
+            System.out.print(v.getName() + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < nodes.size(); i++) {
+            System.out.print(nodes.get(i).getName() + "  ");
+            for (int j = 0; j < nodes.size(); j++) {
+                System.out.print(adjMatrix[i][j] + " ");
             }
-            
-            // Fixed: Removed 's:' and changed to println() for a clean newline
             System.out.println();
         }
     }
