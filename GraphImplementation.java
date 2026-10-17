@@ -3,23 +3,63 @@ public class GraphImplementation {
     public static void main(String[] args) { 
         Graph ourGraph = new Graph();
         
-        // 1. Create vertices (Removed 'name:')
-        Vertex v0 = new Vertex("0"); 
-        Vertex v1 = new Vertex("1"); 
-        Vertex v2 = new Vertex("2");
-        Vertex v3 = new Vertex("3");
+        Vertex vA = new Vertex("A"); 
+        Vertex vB = new Vertex("B"); 
+        Vertex vC = new Vertex("C");
+        Vertex vD = new Vertex("D");
+        Vertex vE = new Vertex("E");
+        Vertex vF = new Vertex("F");
+        Vertex vG = new Vertex("G");
         
-        ourGraph.AddVertex(v0);
-        ourGraph.AddVertex(v1);
-        ourGraph.AddVertex(v2);
-        ourGraph.AddVertex(v3);
+        ourGraph.AddVertex(vA);
+        ourGraph.AddVertex(vB);
+        ourGraph.AddVertex(vC);
+        ourGraph.AddVertex(vD);
+        ourGraph.AddVertex(vE);
+        ourGraph.AddVertex(vF);
+        ourGraph.AddVertex(vG);
         
-        // 2. Add edges (Removed 'weight:')
-        ourGraph.AddEdge(v0, v1, 2);
-        ourGraph.AddEdge(v1, v2, 3);
-        ourGraph.AddEdge(v2, v0, 1);
-        ourGraph.AddEdge(v2, v3, 1);
-        ourGraph.AddEdge(v3, v2, 4);
+        int w = 1;
+
+        //A
+        ourGraph.AddEdge(vA, vB, w); ourGraph.AddEdge(vB, vA, w);
+        ourGraph.AddEdge(vA, vC, w); ourGraph.AddEdge(vC, vA, w);
+        ourGraph.AddEdge(vA, vD, w); ourGraph.AddEdge(vD, vA, w);
+        ourGraph.AddEdge(vA, vE, w); ourGraph.AddEdge(vE, vA, w);
+        ourGraph.AddEdge(vA, vF, w); ourGraph.AddEdge(vF, vA, w);
+        ourGraph.AddEdge(vA, vG, w);
+        ourGraph.AddEdge(vG, vA, w);
+
+        // B
+        ourGraph.AddEdge(vB, vC, w); ourGraph.AddEdge(vC, vB, w);
+        ourGraph.AddEdge(vB, vD, w); ourGraph.AddEdge(vD, vB, w);
+        ourGraph.AddEdge(vB, vE, w); ourGraph.AddEdge(vE, vB, w);
+        ourGraph.AddEdge(vB, vF, w);
+        ourGraph.AddEdge(vF, vB, w);
+        ourGraph.AddEdge(vB, vG, w); ourGraph.AddEdge(vG, vB, w);
+
+        // С
+        ourGraph.AddEdge(vC, vD, w); ourGraph.AddEdge(vD, vC, w);
+        ourGraph.AddEdge(vC, vE, w);
+        ourGraph.AddEdge(vE, vC, w);
+        ourGraph.AddEdge(vC, vF, w);
+        ourGraph.AddEdge(vF, vC, w);
+        ourGraph.AddEdge(vC, vG, w); ourGraph.AddEdge(vG, vC, w);
+
+        //  D
+        ourGraph.AddEdge(vD, vE, w); ourGraph.AddEdge(vE, vD, w);
+        ourGraph.AddEdge(vD, vF, w); ourGraph.AddEdge(vF, vD, w);
+        ourGraph.AddEdge(vD, vG, w); ourGraph.AddEdge(vG, vD, w);
+
+        // E
+        ourGraph.AddEdge(vE, vF, w); ourGraph.AddEdge(vF, vE, w);
+        ourGraph.AddEdge(vE, vG, w); ourGraph.AddEdge(vG, vE, w);
+
+        // F
+        ourGraph.AddEdge(vF, vG, w); ourGraph.AddEdge(vG, vF, w);
         
-    } // Closes main method
-} // Closes GraphImplementation class
+        System.out.println("Список смежности графа:");
+        ourGraph.printGraph();
+        
+    }
+}
