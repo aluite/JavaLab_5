@@ -1,15 +1,13 @@
 import java.util.LinkedList;
+
 class Vertex {
     private String name;
-    private LinkedList<Edge> edgeList;
+
     public Vertex(String name) {
+        this.name = name;
+    }
 
-this.name = name;
-edgeList = new LinkedList<>(); }
-
-public String getName() {
-return name;
-}
-public LinkedList<Edge> getEdges() { return edgeList;
-}
+    public String getName() {
+        return name;
+    }
 }
